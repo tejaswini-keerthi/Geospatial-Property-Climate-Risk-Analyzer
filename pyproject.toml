@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "geospatial-property-climate-risk-analyzer"
+version = "0.1.0"
+description = "End-to-end geospatial property climate-risk analyzer with XGBoost, SHAP, H3, PyDeck, Streamlit, and Claude narratives."
+readme = "README.md"
+requires-python = ">=3.13"
+authors = [{ name = "tejaswini-keerthi", email = "keerthitejaswini25@gmail.com" }]
+license = { text = "MIT" }
+keywords = ["geospatial", "climate-risk", "xgboost", "shap", "h3", "streamlit"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+src = ["src", "tests"]
+extend-exclude = ["notebooks", "data"]
+
+[tool.ruff.lint]
+# A pragmatic-but-strict rule set.
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort
+    "B",    # flake8-bugbear
+    "C4",   # flake8-comprehensions
+    "UP",   # pyupgrade
+    "SIM",  # flake8-simplify
+    "N",    # pep8-naming
+    "D",    # pydocstyle
+    "ANN",  # flake8-annotations
+    "RUF",  # ruff-specific rules
+]
+ignore = [
+    "D203",   # one-blank-line-before-class (conflicts with D211)
+    "D213",   # multi-line-summary-second-line (conflicts with D212)
+    "ANN401", # allow typing.Any where pragmatic
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["D100", "D101", "D102", "D103", "ANN"]
+"notebooks/*" = ["D", "ANN", "E501"]
+"src/dashboard/*" = ["D103"]  # Streamlit callbacks read fine without docstrings
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"
+asyncio_mode = "auto"
+filterwarnings = ["ignore::DeprecationWarning"]

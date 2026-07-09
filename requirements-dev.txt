@@ -1,0 +1,14 @@
+-r requirements.txt
+
+# Linting / formatting
+ruff>=0.6
+
+# Testing
+pytest>=8.3
+pytest-asyncio>=0.24
+
+# Git hooks
+pre-commit>=3.8
+
+# Notebooks
+jupyter>=1.1
