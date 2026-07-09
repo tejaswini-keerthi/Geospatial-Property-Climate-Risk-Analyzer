@@ -1,0 +1,6 @@
+# Normalize line endings to LF in the repository for cross-platform consistency.
+* text=auto eol=lf
+
+# Treat notebooks and data as text with LF as well.
+*.ipynb text eol=lf
+*.csv text eol=lf
